@@ -131,7 +131,7 @@ export {my_new_action};
 ```
 
 # cloud deployment
-by default your "host" is localhost. when deploying your server live you must update the host setting in [src/config.js](https://github.com/McDegens-DAO/solana-action-express/blob/main/src/config.js) to your live domain.
+by default your "host" is localhost. when deploying your server live you must update the host setting in src/config.js to your live domain.
 ```javascript
 var host = "https://your-domain-name.com";
 ```
