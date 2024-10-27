@@ -3,22 +3,14 @@ solana actions server powered by node & express js
 
 provides modular action endpoints for solana blinks
 
-support: contact [@SolDapper](https://x.com/SolDapper) or [McDegens Discord](https://discord.gg/Z9bUEf8gYb)
-
-featured at: [Awesome Solana Blinks](https://github.com/solana-developers/awesome-blinks/blob/master/README.md)
-
-our live mint blink: [On Dialect](https://dial.to/?action=solana-action:https://www.solana-action-express.com/mcdegen-mint-config)
-
-the default action for this repo is a usdc donation blink. however there is a sol donation action included as well as mcswap otc blinks.
-
-![solana blink](https://github.com/McDegens-DAO/solana-action-express/blob/main/blink.png)
+support: contact [@SolDapper](https://x.com/SolDapper)
 
 # auto install and start
 installs and starts the server
 
 *this command creates the your-projects/solana-action-express working directory
 ```javascript
-git clone https://github.com/McDegens-DAO/solana-action-express.git && cd solana-action-express && npm install && npm run actions
+git clone https://github.com/SolDapper/solana-action-express.git && cd solana-action-express && npm install && npm run actions
 ```
 
 # normal start
@@ -31,7 +23,7 @@ npm run actions
 ```javascript
 touch src/actions/my_new_action.js
 ```
-2. include the new file into your [actions.js](https://github.com/McDegens-DAO/solana-action-express/blob/a5b8883a90303b31030f9cbc941a2b4ffbc22f27/src/actions.js#L32)
+2. include the new file in actions.js
 ```javascript
 // *********************************************************************************
 // include actions
