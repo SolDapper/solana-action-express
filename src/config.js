@@ -18,12 +18,6 @@ if(host.includes("localhost")){host=host+":3000";}
 var rules = {"rules":[
 {"pathPattern":"/donate-usdc-config","apiPath":host+"/donate-usdc-config"},
 {"pathPattern":"/donate-sol-config","apiPath":host+"/donate-sol-config"},
-{"pathPattern":"/mcswap-nft-create","apiPath":host+"/mcswap-nft-create"},
-{"pathPattern":"/mcswap-pnft-create","apiPath":host+"/mcswap-pnft-create"},
-{"pathPattern":"/mcswap-cnft-create","apiPath":host+"/mcswap-cnft-create"},
-{"pathPattern":"/mcswap-core-create","apiPath":host+"/mcswap-core-create"},
-{"pathPattern":"/mcswap-spl-create","apiPath":host+"/mcswap-spl-create"},
-{"pathPattern":"/mcswap","apiPath":host+"/mcswap"},
 {"pathPattern":"/mcsend","apiPath":host+"/mcsend"},
 ]};
 // *********************************************************************************
