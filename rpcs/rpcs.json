@@ -1,7 +1,5 @@
 [
     {
-        "name": "Helius Required for Priority Fee Optimization",
-        "wallet": "public-wallet-associated-with-this-endpoint",
         "url": "https://api.mainnet-beta.solana.com"
     }
 ]
