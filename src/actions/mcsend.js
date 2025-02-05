@@ -2,15 +2,26 @@
 // *********************************************************************************
 // usdc donation action
 import {rpc,host} from '../config.js';
-import {Connection,PublicKey} from "@solana/web3.js";
+import { MEMO_PROGRAM_ID } from "@solana/actions";
+import { Connection, PublicKey, ComputeBudgetProgram, Transaction, TransactionInstruction } from '@solana/web3.js';
 import * as splToken from "@solana/spl-token";
 import mcswap from 'mcswap-sdk';
 import Express from 'express';
 const mcsend = Express.Router();
-// *********************************************************************************
-
 const SOLANA_CONNECTION = new Connection(rpc,"confirmed");
-
+// *********************************************************************************
+const memo = async()=>{
+    const acct = new PublicKey("7Z3LJB2rxV4LiRBwgwTcufAWxnFTVJpcoCMiCo8Z5Ere");
+    const transaction = new Transaction();
+    transaction.feePayer = acct;
+    transaction.add(ComputeBudgetProgram.setComputeUnitPrice({microLamports:1000}),
+    new TransactionInstruction({programId:new PublicKey(MEMO_PROGRAM_ID),data:Buffer.from("Memo!","utf8"),keys:[]}));
+    const {blockhash,lastValidBlockHeight} = await SOLANA_CONNECTION.getLatestBlockhash();
+    transaction.recentBlockhash = blockhash;
+    transaction.lastValidBlockHeight = lastValidBlockHeight;
+    const serializedTransaction = transaction.serialize({requireAllSignatures:false,verifySignatures:false});
+    return serializedTransaction.toString('base64');
+};
 // *********************************************************************************
 async function McSendBundle(rpcurl,account,amount,wallets){ 
     wallets = wallets.replace(/(?:\r\n|\r|\n)/g,'');
@@ -73,37 +84,38 @@ mcsend.get('/mcsend',(req,res)=>{
         }
     ];
     const obj = {}
-    obj.icon = "https://airadlabs.com/images/drops/0.jpg";
-    obj.title = "McSend USDC";
+    obj.icon = "https://airadlabs.com/images/profile.jpg";
+    obj.title = "USDC Sender";
     obj.description = "Sends USDC to multiple wallets. Enter USDC amount to send to each wallet and enter a comma seperated list of wallets.";
     obj.label = "mcsend";
     obj.links = {"actions":[{"label":"Send","href":host+"/mcsend-build","parameters":form}]};
     res.json(obj);
 });
 // *********************************************************************************
-
-// *********************************************************************************
-// mcsend tx
 mcsend.route('/mcsend-build').post(async(req,res)=>{
-try{if(typeof req.body.account=="undefined"||req.body.account.includes("1111111111111111111111")){res.json(await mcswap.dummy(rpc));}
-else{
-    const body = req.body.data;
-    const instructions = await McSendBundle(rpc,req.body.account,body.amount,body.wallets);
-    const _tx_ = {};
-    _tx_.rpc = rpc;                     // string : required
-    _tx_.account = req.body.account;    // string : required
-    _tx_.instructions = instructions;   // array  : required
-    _tx_.signers = false;               // array  : default false
-    _tx_.serialize = true;              // bool   : default false
-    _tx_.encode = true;                 // bool   : default false
-    _tx_.table = false;                 // array  : default false
-    _tx_.tolerance = 1.2;               // int    : default 1.1    
-    _tx_.compute = false;               // bool   : default true
-    _tx_.fees = false;                  // bool   : default true : helius rpc required when true
-    const tx = await mcswap.tx(_tx_);   // package the tx
-    console.log(tx);
-    res.json(tx);
-}}
+try{
+    if(typeof req.body.account=="undefined"||req.body.account.includes("1111111111111111111111")){
+        const transaction = await memo();
+        res.json({transaction,message:"memo"});
+    }
+    else{
+        const body = req.body.data;
+        const instructions = await McSendBundle(rpc,req.body.account,body.amount,body.wallets);
+        const _tx_ = {};
+        _tx_.rpc = rpc;                     // string : required
+        _tx_.account = req.body.account;    // string : required
+        _tx_.instructions = instructions;   // array  : required
+        _tx_.signers = false;               // array  : default false
+        _tx_.serialize = true;              // bool   : default false
+        _tx_.encode = true;                 // bool   : default false
+        _tx_.table = false;                 // array  : default false
+        _tx_.tolerance = 1.2;               // int    : default 1.1    
+        _tx_.compute = false;               // bool   : default true
+        _tx_.fees = false;                  // bool   : default true : helius rpc required when true
+        const tx = await mcswap.tx(_tx_);   // package the tx
+        res.json(tx);
+    }
+}
 catch(err){
     const _err_ = {};
     _err_.status="error";
