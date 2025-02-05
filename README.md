@@ -202,45 +202,9 @@ $rule = new stdClass;
 $rule->pathPattern = "/donate-usdc";
 $rule->apiPath = "https://www.solana-action-express.com/donate-usdc-config";
 $rules[] = $rule;
-$rule=new stdClass;
-$rule->pathPattern = "/spl/*";
-$rule->apiPath = "https://www.solana-action-express.com/mcswap-spl-config/*";
-$rules[] = $rule;
-$rule=new stdClass;
-$rule->pathPattern = "/swap-nft/*";
-$rule->apiPath = "https://www.solana-action-express.com/mcswap-nft-config/*";
-$rules[] = $rule;
-$rule=new stdClass;
-$rule->pathPattern = "/swap-pnft/*";
-$rule->apiPath = "https://www.solana-action-express.com/mcswap-pnft-config/*";
-$rules[] = $rule;
-$rule=new stdClass;
-$rule->pathPattern = "/swap-cnft/*";
-$rule->apiPath = "https://www.solana-action-express.com/mcswap-cnft-config/*";
-$rules[] = $rule;
-$rule=new stdClass;
-$rule->pathPattern = "/swap-core/*";
-$rule->apiPath = "https://www.solana-action-express.com/mcswap-core-config/*";
-$rules[] = $rule;
-$rule=new stdClass;
-$rule->pathPattern = "/createSPL";
-$rule->apiPath = "https://www.solana-action-express.com/mcswap-spl-create";
-$rules[] = $rule;
-$rule=new stdClass;
-$rule->pathPattern = "/createNFT";
-$rule->apiPath = "https://www.solana-action-express.com/mcswap-nft-create";
-$rules[] = $rule;
-$rule=new stdClass;
-$rule->pathPattern = "/createPNFT";
-$rule->apiPath = "https://www.solana-action-express.com/mcswap-pnft-create";
-$rules[] = $rule;
-$rule=new stdClass;
-$rule->pathPattern = "/createCNFT";
-$rule->apiPath = "https://www.solana-action-express.com/mcswap-cnft-create";
-$rules[] = $rule;
-$rule=new stdClass;
-$rule->pathPattern = "/createCORE";
-$rule->apiPath = "https://www.solana-action-express.com/mcswap-core-create";
+$rule = new stdClass;
+$rule->pathPattern = "/mcsend";
+$rule->apiPath = "https://www.solana-action-express.com/mcsend";
 $rules[] = $rule;
 // ***************************************************************
 $response->rules=$rules;
@@ -250,16 +214,6 @@ exit();
 **.htaccess**
 ```javascript
 RewriteRule ^actions.json$ actions.php [L]
-```
-testing a request to yourwebsite.com/actions.json should respond with these headers
-```javascript
-Date: Fri, 28 Jun 2024 00:21:13 GMT
-Server: Apache
-Access-Control-Allow-Origin: *
-Access-Control-Max-Age: 86400
-Access-Control-Allow-Methods: GET
-Transfer-Encoding: chunked
-Content-Type: application/json
 ```
 
 # official solana actions docs
