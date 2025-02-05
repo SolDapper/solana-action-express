@@ -4,7 +4,7 @@
 import {rpc,host} from '../config.js';
 import {Connection,PublicKey} from "@solana/web3.js";
 import * as splToken from "@solana/spl-token";
-import mcswap from 'mcswap-js';
+import mcswap from 'mcswap-sdk';
 import Express from 'express';
 const mcsend = Express.Router();
 // *********************************************************************************

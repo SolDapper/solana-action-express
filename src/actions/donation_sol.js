@@ -3,7 +3,7 @@
 // sol donation action
 import {rpc,host} from '../config.js';
 import {PublicKey,SystemProgram} from "@solana/web3.js";
-import mcswap from 'mcswap-js';
+import mcswap from 'mcswap-sdk';
 import Express from 'express';
 var donation_sol = Express.Router();
 // *********************************************************************************
@@ -60,7 +60,7 @@ donation_sol.route('/donate-sol-build').post(async function(req,res){
   _tx_.serialize = true;              // bool   : default false
   _tx_.encode = true;                 // bool   : default false
   _tx_.table = false;                 // array  : default false
-  _tx_.tolerance = 2;                 // int    : default 1.1    
+  _tx_.tolerance = 1.2;                 // int    : default 1.1    
   _tx_.compute = false;               // bool   : default true
   _tx_.fees = false;                  // bool   : default true : helius rpc required when true
   let tx = await mcswap.tx(_tx_);     // package the tx

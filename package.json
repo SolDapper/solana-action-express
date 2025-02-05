@@ -1,6 +1,6 @@
 {
     "name": "solana-action-express",
-    "version": "0.0.4",
+    "version": "0.1.0",
     "description": "solana actions api server",
     "main": "src/actions.js",
     "type": "module",
@@ -24,7 +24,7 @@
         "fs": "^0.0.1-security",
         "http": "^0.0.1-security",
         "https": "^1.0.0",
-        "mcswap-js": "^0.2.7",
+        "mcswap-sdk": "^0.1.0",
         "open": "^10.1.0"
     }
 }
