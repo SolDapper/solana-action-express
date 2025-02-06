@@ -27,7 +27,7 @@ donation_sol.get('/donate-sol-config',(req,res)=>{
   let obj = {}
   obj.icon = "https://airadlabs.com/images/profile.jpg";
   obj.title = "Send SOL to @SolDapper";
-  obj.description = "Enter SOL amount and click Send";
+  obj.description = "I'll repay you in pictures of feet";
   obj.label = "donate";
   obj.links = {
   "actions": [

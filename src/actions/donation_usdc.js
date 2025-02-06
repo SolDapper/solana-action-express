@@ -28,7 +28,7 @@ donation_usdc.get('/donate-usdc-config',(req,res)=>{
 const obj = {}
 obj.icon = "https://airadlabs.com/images/profile.jpg";
 obj.title = "Send USDC to @SolDapper";
-    obj.description = "Enter USDC amount and click Send";
+    obj.description = "I'll repay you in pictures of feet";
     obj.label = "donate";
     obj.links = {
     "actions": [
