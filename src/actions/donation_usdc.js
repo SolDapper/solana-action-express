@@ -27,8 +27,8 @@ const memo = async()=>{
 donation_usdc.get('/donate-usdc-config',(req,res)=>{
 const obj = {}
 obj.icon = "https://airadlabs.com/images/profile.jpg";
-obj.title = "Send USDC to @SolDapper";
-    obj.description = "I'll repay you in pictures of feet";
+obj.title = "Send USDC to Dapper";
+    obj.description = "if you like pictures of feet";
     obj.label = "donate";
     obj.links = {
     "actions": [
@@ -38,7 +38,7 @@ obj.title = "Send USDC to @SolDapper";
             "parameters": [
             {
                 "name": "amount", // input field name
-                "label": "USDC Amount", // text input placeholder
+                "label": "0.000000", // text input placeholder
             }
             ]
         }

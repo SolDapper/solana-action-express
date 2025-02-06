@@ -24,7 +24,7 @@
         "fs": "^0.0.1-security",
         "http": "^0.0.1-security",
         "https": "^1.0.0",
-        "mcswap-sdk": "^0.1.0",
+        "mcswap-sdk": "^0.1.7",
         "open": "^10.1.0"
     }
 }

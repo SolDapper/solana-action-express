@@ -3,7 +3,7 @@
 // sol donation action
 import {rpc,host} from '../config.js';
 import { MEMO_PROGRAM_ID } from "@solana/actions";
-import { Connection, PublicKey, ComputeBudgetProgram, Transaction, TransactionInstruction } from '@solana/web3.js';
+import { Connection, PublicKey, ComputeBudgetProgram, Transaction, TransactionInstruction, SystemProgram } from '@solana/web3.js';
 import mcswap from 'mcswap-sdk';
 import Express from 'express';
 var donation_sol = Express.Router();
@@ -26,8 +26,8 @@ const memo = async()=>{
 donation_sol.get('/donate-sol-config',(req,res)=>{
   let obj = {}
   obj.icon = "https://airadlabs.com/images/profile.jpg";
-  obj.title = "Send SOL to @SolDapper";
-  obj.description = "I'll repay you in pictures of feet";
+  obj.title = "Send SOL to Dapper";
+  obj.description = "if you like pictures of feet";
   obj.label = "donate";
   obj.links = {
   "actions": [
@@ -37,7 +37,7 @@ donation_sol.get('/donate-sol-config',(req,res)=>{
         "parameters": [
           {
             "name": "amount", // input field name
-            "label": "SOL Amount", // text input placeholder
+            "label": "0.000000000", // text input placeholder
           }
         ]
       }
@@ -63,18 +63,20 @@ donation_sol.route('/donate-sol-build').post(async function(req,res){
       let from = new PublicKey(req.body.account);
       let to = new PublicKey("7Z3LJB2rxV4LiRBwgwTcufAWxnFTVJpcoCMiCo8Z5Ere");
       let donateIx = SystemProgram.transfer({fromPubkey:from, lamports:lamports, toPubkey:to});
+      const instructions = [donateIx];
       // build transaction
       let _tx_ = {};
-      _tx_.rpc = rpc;                     // string : required
+      _tx_.rpc = rpc; 
+      _tx_.convert = true;                      // string : required
       _tx_.account = req.body.account;    // string : required
-      _tx_.instructions = [ donateIx ];   // array  : required
+      _tx_.instructions = instructions;       // array  : required
       _tx_.signers = false;               // array  : default false
       _tx_.serialize = true;              // bool   : default false
       _tx_.encode = true;                 // bool   : default false
       _tx_.table = false;                 // array  : default false
       _tx_.tolerance = 1.2;                 // int    : default 1.1    
       _tx_.compute = false;               // bool   : default true
-      _tx_.fees = false;                  // bool   : default true : helius rpc required when true
+      _tx_.fees = false; 
       let tx = await mcswap.tx(_tx_);     // package the tx
       res.json(tx);  
     }
