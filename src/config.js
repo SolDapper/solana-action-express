@@ -5,7 +5,7 @@ import 'dotenv/config';
 // server settings
 var host = ""; // your live domain
 host = "http://localhost"; // comment out before production deployment
-var auto = "donate-usdc-config"; // auto open blink in dial.to test window : ignored in prod
+var auto = "donate-sol-config"; // auto open blink in dial.to test window : ignored in prod
 // *********************************************************************************
 
 // *********************************************************************************

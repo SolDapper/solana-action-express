@@ -26,7 +26,7 @@ const memo = async()=>{
 donation_sol.get('/donate-sol-config',(req,res)=>{
   let obj = {}
   obj.icon = "https://airadlabs.com/images/profile.jpg";
-  obj.title = "Donate SOL to @SolDapper";
+  obj.title = "Send SOL to @SolDapper";
   obj.description = "Enter SOL amount and click Send";
   obj.label = "donate";
   obj.links = {
